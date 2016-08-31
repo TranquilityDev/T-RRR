@@ -1,0 +1,37 @@
+for(i in 1:5){
+  rm(DT) 
+  rm(TD1)
+  rm(TD2)
+  rm(TD3)
+  rm(TD4)
+  rm(TD5)
+        TDepartment = read.csv("D:/大學作業/電子專題/逢甲老師資料.csv")[i,3]
+        TName = read.csv("D:/大學作業/電子專題/逢甲老師資料.csv", stringsAsFactors = FALSE)[i,5]
+        
+        
+        D1 <- paste0("D:/FCU Teacher(整理)/",TDepartment,"/",TName,"科技部計畫.csv")
+        D2 <- paste0("D:/FCU Teacher(整理)/",TDepartment,"/",TName,"核准專利.csv")
+        D3 <- paste0("D:/FCU Teacher(整理)/",TDepartment,"/",TName,"專長.csv")
+        D4 <- paste0("D:/FCU Teacher(整理)/",TDepartment,"/",TName,"校內外演講.csv")
+        D5 <- paste0("D:/FCU Teacher(整理)/",TDepartment,"/",TName,"專書及技術報告.csv")
+        
+        
+        TD1 <- read.csv(D1, stringsAsFactor = F, fileEncoding = 'big5')[,3]
+        TD2 <- read.csv(D2, stringsAsFactor = F, fileEncoding = 'big5')[,3]
+        TD3 <- read.csv(D3, stringsAsFactor = F, fileEncoding = 'big5')[,3]
+        TD4 <- read.csv(D4, stringsAsFactor = F, fileEncoding = 'big5')[,3]
+        TD5 <- read.csv(D5, stringsAsFactor = F, fileEncoding = 'big5')[,5]
+        
+        if(!file.exists(D1)) {TD1='null'}
+        if(!file.exists(D2)) {TD2='null'}
+        if(!file.exists(D3)) {TD3='null'}
+        if(!file.exists(D4)) {TD4='null'}
+        if(!file.exists(D5)) {TD5='null'}
+        
+        
+        DT<-c(TD1,TD2,TD3,TD4,TD5)
+        #write.csv(DT,paste0("D:/FCU Teacher(整理)/TFile/財務工程與精算學位學程/",TName,"辨識文2.csv"),row.names = T)
+        write.table(DT,paste0("D:/FCU Teacher(整理)/TFile/TEST/",TDepartment,"/",TName,"辨識文.csv"),row.names=FALSE, col.names=FALSE, sep=",")
+
+        
+}
